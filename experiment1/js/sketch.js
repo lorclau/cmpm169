@@ -1,12 +1,15 @@
-// sketch.js - purpose and description here
-// Author: Your Name
-// Date:
+// sketch.js - First experiment
+// Author: Lorraine Torres
+// Date: 1/19/2025
 
 // Here is how you might set up an OOP p5.js project
 // Note that p5.js looks for a file called sketch.js
 
-// Constants - User-servicable parts
-// In a longer project I like to put these in a separate file
+//code below inspired by P_2_2_4_01 by generative-design - https://editor.p5js.org/generative-design/sketches/P_2_2_4_01
+
+'use strict';
+
+// Constants
 const VALUE1 = 1;
 const VALUE2 = 2;
 
@@ -14,6 +17,12 @@ const VALUE2 = 2;
 let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
+
+var maxCount = 500; // max count of the cirlces
+var currentCount = 1;
+var x = [];
+var y = [];
+var r = [];
 
 class MyClass {
     constructor(param1, param2) {
@@ -31,7 +40,7 @@ function resizeScreen() {
   centerVert = canvasContainer.height() / 2; // Adjusted for drawing logic
   console.log("Resizing...");
   resizeCanvas(canvasContainer.width(), canvasContainer.height());
-  // redrawCanvas(); // Redraw everything based on new size
+  //redrawCanvas(); // Redraw everything based on new size
 }
 
 // setup() function is called once when the program starts
@@ -40,6 +49,14 @@ function setup() {
   canvasContainer = $("#canvas-container");
   let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
   canvas.parent("canvas-container");
+
+  strokeWeight(0.5);
+
+  // first circle
+  x[0] = width / 2;
+  y[0] = height / 2;
+  r[0] = 10;
+
   // resize canvas is the page is resized
 
   // create an instance of the class
@@ -53,27 +70,47 @@ function setup() {
 
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
-  background(220);    
-  // call a method on the instance
-  myInstance.myMethod();
+  clear();
 
-  // Set up rotation for the rectangle
-  push(); // Save the current drawing context
-  translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-  rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-  fill(234, 31, 81);
-  noStroke();
-  rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-  pop(); // Restore the original drawing context
+  // create a random set of parameters
+  var newR = random(1, 7);
+  var newX = random(newR, width - newR);
+  var newY = random(newR, height - newR);
 
-  // The text is not affected by the translate and rotate
-  fill(255);
-  textStyle(BOLD);
-  textSize(140);
-  text("p5*", centerHorz - 105, centerVert + 40);
+  var closestDist = Number.MAX_VALUE;
+  var closestIndex = 0;
+  // which circle is the closest?
+  for (var i = 0; i < currentCount; i++) {
+    var newDist = dist(newX, newY, x[i], y[i]);
+    if (newDist < closestDist) {
+      closestDist = newDist;
+      closestIndex = i;
+    }
+  }
+
+  // show original position of the circle and a line to the new position
+  // fill(230);
+  // ellipse(newX, newY, newR * 2, newR * 2);
+  // line(newX, newY, x[closestIndex], y[closestIndex]);
+
+  // aline it to the closest circle outline
+  var angle = atan2(newY - y[closestIndex], newX - x[closestIndex]);
+
+  x[currentCount] = x[closestIndex] + cos(angle) * (r[closestIndex] + newR);
+  y[currentCount] = y[closestIndex] + sin(angle) * (r[closestIndex] + newR);
+  r[currentCount] = newR;
+  currentCount++;
+
+  // draw them
+  for (var i = 0; i < currentCount; i++) {
+    fill(50);
+    ellipse(x[i], y[i], r[i] * 2, r[i] * 2);
+  }
+
+  if (currentCount >= maxCount) noLoop();
 }
 
 // mousePressed() function is called once after every time a mouse button is pressed
 function mousePressed() {
-    // code to run when mouse is pressed
+    console.log("mouse pressed");
 }
