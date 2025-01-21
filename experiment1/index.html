@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment 1 - Vector Art & Animation</title>
+	<title>Experiment 1: Breaking Off</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
@@ -32,7 +32,7 @@
 	<main id="content">
 		<section>
 
-			<h1>Experiment 1 - Vector Art & Animation</h1>
+			<h1>Experiment 1: Breaking Off - Vector Art, Animation, & Interactivity</h1>
 
 			<div class="minor-section">
 				<div id="canvas-container">
@@ -45,17 +45,24 @@
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>This piece is inspired from P_2_2_4_01 by generative-design.</p>
+					It incorporates branching and webbing effects to create the look inspired by that of a cracking screen. </p>
+					It also uses shaking animation and interactivity, so when users click on the canvas the drawing process will start from that position, and new rectangles will continue to be drawn in the same manner as before. This makes it look like you are cracking your own screen!
+				</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>This code uses `rect()` to draw rectangles. It starts by placing the first rectangle at `mouseX` and `mouseY` when the mouse is clicked, using `x[0]` and `y[0]` for its position.
+					Then, in the `draw()` function, it randomly generates rectangles of varing widths using `dist()` and `atan2()` to position each new rectangle next to the nearest one, this achieves the branching effect of the rectangles.
+					The `draw()` function also applies a shake effect with `random()`, and uses `line()` to draw lines between each new rectangle and the one just created to achieve the webbing effect. The drawing loop stops when `currentCount` reaches the `maxCount` of rectangles.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>This experiment began with a simple concept, to create a cracking pattern with the branching of thin lines, but once I implemented it, it didn't feel very intresting. It was a little disheartening becuase I spent quite a lot of time trying to get this version working, only for it to be underwhelming. However, I didnt give up.
+					I continued experimenting until, by accident, I implemented a "webbing" effect which added the needed depth I was looking for. I was inspired by this effect, so I tweaked it and altered my concept to create a more digital looking crack to inspired by that of a cracked screen. I enjoyed the randomness of this piece because
+					no two cracked screens are alike. I wanted to add to that randomness with the interactivity of the mouse click, which would let users create their own unique pieces. Most of the changes I made used some of my prior knowledge as well as the concepts we learned in CMPM 169.</p>
 			</div>
 
 		</section>
