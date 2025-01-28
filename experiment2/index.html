@@ -32,7 +32,7 @@
 	<main id="content">
 		<section>
 
-			<h1>Experiment X - Subject/Topic</h1>
+			<h1>Experiment 2: Waves - Generative methods, Fluid Dynamics, Interactivity</h1>
 
 			<div class="minor-section">
 				<div id="canvas-container">
@@ -45,17 +45,26 @@
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>For this experiment, I wanted to model the natural movement of calm water using generative methods. I also wanted to add some interactitiy so users can click to create ripples that distrub the water's movement.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>Waves: The water is simulated with a grid whose cells are spaced out by the variable spacing and each cell has a "water height" value, which is updated at each frame to create the waves. The illusion of waves is created using a combination of a sine wave (sin(angle)) and Perlin noise (noise(i, j)).
+					Each grid cell is drawn as an ellipse, with the size modulated by the "water height". A second smaller ellipse with reduced size is drawn on top to simulate the shading of the wave and add depth. As the frameCount increases, the waveforms evolve, creating dynamic movement in the water. </p>
+
+					Ripples: ripples now originate from the mouse position (ripple.x, ripple.y) and affects all the grid cells based on their distance from the click position.
+					The strength of the ripple at each grid cell decreases with the distance from the mouse click, so the closer the grid cell is to the mouse, the stronger the ripple effect; this spread of the ripples is controlled by the decayRate.
+					The sine wave effect is still applied (sin(frameCount * 0.1 + d * 0.5)), and the wave strength is modified by the distance (waveStrength = max(0, ripple.strength - d * ripple.decayRate)).
+					The strength of the ripple (ripple.strength) diminishes over time due to the damping factor, making the ripple fade out gradually.
+				</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>Before I began this experiment I had a goal to mimic the natural movement of water in some form. It was difficult to find a starting point or something to imitate because the sketches I saw didn't have the consistent movement I wanted so I didn’t know where to start.
+					Eventually, I found a sketch which gave me the idea to use a grid and scaling circles to create the look of moving water. I had to do some external research on sine and noise so I could use them to achieve my desired effect. This involved a lot of trial and error and simple value adjustments until I got something I was happy with. My favorite part was adding the click-to-disturb functionality with mousePressed() because it adds to the natural but random movement of water.
+					</p>
 			</div>
 
 		</section>
