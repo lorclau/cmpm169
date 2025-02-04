@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment X - Subject/Topic</title>
+	<title>Experiment 3 - Sound Art</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
@@ -19,7 +19,8 @@
         crossorigin="anonymous"></script>
 	<!-- Load p5.js library -->
 	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
-
+	<!-- Load p5.sound -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
 	<!-- Link to javascript files - DEFER waits until all elements are rendered -->
     <script type="text/javascript" src="../js/site.js" DEFER></script>
 	<!-- Use me for a JavaScript OOP Project -->
@@ -32,7 +33,7 @@
 	<main id="content">
 		<section>
 
-			<h1>Experiment X - Subject/Topic</h1>
+			<h1>Experiment 3: See That Sound - Sound Art</h1>
 
 			<div class="minor-section">
 				<div id="canvas-container">
@@ -45,17 +46,19 @@
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>This piece uses amplitude and frequency analysis to create a spiral visualization of a song and all its fluctuations.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>This code creates a dynamic audio visualizer using p5.js, where visuals react to the frequency spectrum of a song. It loads and plays an audio file, then analyzes the sound's amplitude and frequency spectrum using p5.Amplitude and p5.FFT. As the song plays, the program tracks changes in frequency, and when a significant beat drop is detected (when the average frequency exceeds a threshold), the background color changes to a random color from a predefined set. Simultaneously, spinning rings are drawn at the center of the canvas, with their sizes corresponding to the strength of different frequency bands. These rings change color dynamically based on the spectrum, creating a colorful, rhythmic visual effect. The rotation speed of the rings is controlled by a gradually changing angle, producing a smooth and continuously evolving visual experience synchronized with the music.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>For this experiment, my main goal was to gain a better understanding of sound art and to try out different ways of representing sound. I believe I gained useful knowledge about sound analysis with p5 through this experiment, so I consider the outcome to be successful.
+					Figuring out how to achieve the spinning rings so that the frequency spiking still worked was a bit of a challenge and took some time to get it looking right. I had never attempted sound visualization with code before,
+					but this presented itself as a great opportunity. While I had to do some more external research compared to previous experiments, I think I learned a lot and I am quite happy with the results. My goal was to create responsive visual art that is both functional and aesthetically pleasing, and I feel like I was able to achieve that with this experiment.</p>
 			</div>
 
 		</section>
